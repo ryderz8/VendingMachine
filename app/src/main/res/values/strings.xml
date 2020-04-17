@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Vending Machine</string>
+
+    <string name="dialog_ok">Ok</string>
+    <string name="take_scan_qr_code">Take QR Code</string>
+    <string name="get_in">Get me going</string>
+
+</resources>

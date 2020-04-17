@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.test.beervm">
+    <application
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.BeerActivity"/>
+    </application>
+</manifest>
