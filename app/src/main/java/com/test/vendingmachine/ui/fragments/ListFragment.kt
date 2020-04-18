@@ -31,7 +31,6 @@ class ListFragment : BaseFragment<FragmentListBinding, HomeViewModel>() {
         getViewDataBinding()?.lifecycleOwner = this
         setupToolbar()
         setUpRecyclerView()
-        getViewModel().getItem()
     }
 
     override fun getViewModel(): HomeViewModel {
