@@ -2,32 +2,38 @@ package com.test.beervm.data
 
 import androidx.lifecycle.LiveData
 import com.test.repository.VendingMachineDB
+import com.test.repository.dao.BeerDAO
 import com.test.repository.entity.BeerVM
 import kotlinx.coroutines.coroutineScope
 
-class BeerRepository(private val vendingMachineDB: VendingMachineDB) : IBeerRepository {
+class BeerRepository(private val beerDAO: BeerDAO) {
 
     companion object {
         @Volatile
         private var instance: BeerRepository? = null
 
-        fun getInstance(vendingMachineDB: VendingMachineDB) =
+        fun getInstance(beerDAO: BeerDAO) =
             instance
                 ?: synchronized(this) {
                     instance
                         ?: BeerRepository(
-                            vendingMachineDB
+                            beerDAO
                         ).also { instance = it }
                 }
     }
 
 
-    override suspend fun insertScannedData(name: String): Long {
-        return 1
+    // You must call this on a non-UI thread or your app will crash. So we're making this a
+    // suspend function so the caller methods know this.
+    // Like this, Room ensures that you're not doing any long running operations on the main
+    // thread, blocking the UI.
+    suspend fun insertScannedData(beerVM: BeerVM) {
+        beerDAO.insertData(beerVM)
     }
 
-    override suspend fun getAllItem(): LiveData<List<BeerVM>> = coroutineScope {
-        return@coroutineScope vendingMachineDB.beerDao().getAllCategory()
-    }
+    // Room executes all queries on a separate thread.
+    // Observed LiveData will notify the observer when the data has changed.
+    val allItem : LiveData<List<BeerVM>> = beerDAO.getAllCategory()
+
 }
 

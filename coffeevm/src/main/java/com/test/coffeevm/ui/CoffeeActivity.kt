@@ -25,7 +25,7 @@ class CoffeeActivity : BaseActivity<ActivityCoffeeBinding, CoffeeViewModel>() {
     override fun initializeViews(bundle: Bundle?) {
         getViewDataBinding()?.lifecycleOwner = this
         initRecyclerView()
-        getViewModel().getListItem()
+        //getViewModel().getListItem()
 
         getViewDataBinding()?.fab?.setOnClickListener {
            getViewModel().updateItem()

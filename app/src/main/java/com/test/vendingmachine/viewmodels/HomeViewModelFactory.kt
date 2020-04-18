@@ -2,12 +2,12 @@ package com.test.vendingmachine.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.test.vendingmachine.data.IHomeRepository
+import com.test.vendingmachine.data.repository.HomeRepository
 
-class HomeViewModelFactory(private val iHomeRepository: IHomeRepository) : ViewModelProvider.NewInstanceFactory() {
+class HomeViewModelFactory(private val homeRepository: HomeRepository) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel(iHomeRepository) as T
+        return HomeViewModel(homeRepository) as T
     }
 }

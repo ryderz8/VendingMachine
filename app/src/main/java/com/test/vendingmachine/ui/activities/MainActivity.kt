@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.activities
 
 import android.Manifest
 import android.content.Intent
@@ -10,8 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.test.core.base.BaseActivity
+import com.test.vendingmachine.BR
 import com.test.vendingmachine.R
-import com.test.vendingmachine.data.DependencyProvider
+import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.ActivityMainBinding
 import com.test.vendingmachine.utilities.Constants
 import com.test.vendingmachine.viewmodels.MainViewModel
@@ -78,7 +79,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun getBindingVariable(): Int {
-        return 0
+        return BR.vm
     }
 
     override fun initializeViews(bundle: Bundle?) {
@@ -89,8 +90,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         getViewDataBinding()?.launchApp?.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
-        //getViewDataBinding()?.launchApp?.visibility = View.VISIBLE // android:visibility="@{vm.valueInserted != -1 ? View.VISIBLE : View.GONE}"
-
+        //for button visibility
+        getViewModel().checkForEmptyDB()
     }
 
     override fun getViewModel(): MainViewModel {

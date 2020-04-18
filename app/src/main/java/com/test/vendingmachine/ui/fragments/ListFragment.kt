@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,9 @@ import com.test.core.base.BaseFragment
 import com.test.snackvm.ui.SnacksActivity
 import com.test.vendingmachine.BR
 import com.test.vendingmachine.R
-import com.test.vendingmachine.data.DependencyProvider
+import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.FragmentListBinding
+import com.test.vendingmachine.ui.adapters.ListItemAdapter
 import com.test.vendingmachine.utilities.Constants
 import com.test.vendingmachine.viewmodels.HomeViewModel
 
@@ -30,7 +31,7 @@ class ListFragment : BaseFragment<FragmentListBinding, HomeViewModel>() {
         getViewDataBinding()?.lifecycleOwner = this
         setupToolbar()
         setUpRecyclerView()
-        getViewModel().getListItem()
+        getViewModel().getItem()
     }
 
     override fun getViewModel(): HomeViewModel {

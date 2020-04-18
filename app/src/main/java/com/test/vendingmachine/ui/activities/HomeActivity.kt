@@ -1,12 +1,19 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.test.beervm.ui.BeerActivity
+import com.test.coffeevm.ui.CoffeeActivity
 import com.test.core.base.BaseActivity
+import com.test.snackvm.ui.SnacksActivity
 import com.test.vendingmachine.R
-import com.test.vendingmachine.data.DependencyProvider
+import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.ActivityHomeBinding
+import com.test.vendingmachine.ui.fragments.ListFragment
+import com.test.vendingmachine.ui.fragments.MapViewFragment
+import com.test.vendingmachine.utilities.Constants
 import com.test.vendingmachine.utilities.FragmentHelper
 import com.test.vendingmachine.viewmodels.HomeViewModel
 
@@ -23,6 +30,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     override fun initializeViews(bundle: Bundle?) {
         setBottomNavigation()
         addListFragment()
+
+        MapViewFragment.onClick = {
+            when (it) {
+                Constants.SNACKS_VM ->
+                    startActivity(Intent(this, SnacksActivity::class.java))
+                Constants.BEER_VM ->
+                    startActivity(Intent(this, BeerActivity::class.java))
+                Constants.COFFEE_VM ->
+                    startActivity(Intent(this, CoffeeActivity::class.java))
+            }
+        }
     }
 
     override fun getViewModel(): HomeViewModel {

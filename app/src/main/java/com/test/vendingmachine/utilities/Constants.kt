@@ -1,8 +1,6 @@
 package com.test.vendingmachine.utilities
 
-import com.google.android.gms.maps.model.LatLng
 import com.test.vendingmachine.R
-import java.util.*
 
 class Constants {
 
@@ -13,20 +11,24 @@ class Constants {
         const val ERROR = "Error"
         const val HANDLER = "handler"
         const val PRESS_AGAIN_TO_SCAN = "Press again button to scan code"
-        const val SCAN_ERROR_SOUND = R.raw.computer_error
-        const val SCAN_OK_SOUND = R.raw.beep_normal
         const val STOP_CAMERA = "************** Stop Camera**********"
 
         const val COFFEE_VM = "coffee"
         const val SNACKS_VM = "snacks"
-        const val BEER_VM =  "beer"
+        const val BEER_VM = "beer"
+        var randomCount = -1
 
-        fun getRandomLatLong() : LatLong {
+        fun getRandomLatLong(): LatLong {
             val list = listOf(
-                LatLong(19.0760, 72.8777), LatLong(28.7041, 77.1025), LatLong(12.9716, 77.5946),
-                LatLong(18.5204, 73.8567)
+                LatLong(19.0760, 72.8777), LatLong(28.7041, 77.1025), LatLong(12.9716, 77.5946)
             )
-            return list.random()
+            return if (randomCount <= 1) {
+                randomCount++
+                list[randomCount]
+            } else {
+                randomCount = 0
+                list[randomCount]
+            }
         }
 
     }

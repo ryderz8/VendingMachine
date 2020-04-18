@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class BeerVM(@ColumnInfo(name = "id") @PrimaryKey val id: String,
                   @ColumnInfo(name = "vendor_id") val vendorId: String,
                   @ColumnInfo(name = "beer_brand") val beer_brand: String,
-                  @ColumnInfo(name = "price") val price: Long,
-                  @ColumnInfo(name = "quantity") val quantity: Long
+                  @ColumnInfo(name = "price") val price: Int,
+                  @ColumnInfo(name = "quantity") val quantity: Int
 
 )

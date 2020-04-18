@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.adapters
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

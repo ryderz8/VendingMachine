@@ -3,11 +3,12 @@ package com.test.coffeevm.data
 import android.content.Context
 import com.test.coffeevm.viewmodels.CoffeeViewModelFactory
 import com.test.repository.VendingMachineDB
+import com.test.repository.dao.CoffeeDAO
 
 object DependencyProvider {
 
-    private fun provideDatabase(context: Context): VendingMachineDB {
-        return VendingMachineDB.getDatabase(context)
+    private fun provideDao(context: Context): CoffeeDAO {
+        return VendingMachineDB.getDatabase(context).coffeeDao()
     }
 
     fun provideCoffeeViewModelFactory(context: Context): CoffeeViewModelFactory {
@@ -15,8 +16,8 @@ object DependencyProvider {
         return CoffeeViewModelFactory(usecase)
     }
 
-    private fun getCoffeeRepository(context: Context): ICoffeeRepository {
-        return CoffeeRepository.getInstance(provideDatabase(context))
+    private fun getCoffeeRepository(context: Context): CoffeeRepository{
+        return CoffeeRepository.getInstance(provideDao(context))
     }
 
 

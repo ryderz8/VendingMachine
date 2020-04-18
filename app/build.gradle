@@ -49,14 +49,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 
-
-//    def room_version = "2.2.5"
-//    implementation "androidx.room:room-runtime:$room_version"
-//    implementation "androidx.room:room-ktx:$room_version"
-//
-//    kapt "androidx.room:room-compiler:$room_version"
-//    kapt "android.arch.persistence.room:compiler:1.1.1"
-
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation 'com.facebook.stetho:stetho:1.5.1'

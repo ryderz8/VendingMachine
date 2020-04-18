@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

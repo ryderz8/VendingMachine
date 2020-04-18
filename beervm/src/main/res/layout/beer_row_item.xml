@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
-                android:text="@{`Price: ` + Long.toString(data.price)}"
+                android:text="@{`Price: ` + Integer.toString(data.price)}"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemname_tv" />
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
-                android:text="@{`Quantity: `+ Long.toString(data.quantity)}"
+                android:text="@{`Quantity: `+ Integer.toString(data.quantity)}"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/price_tv" />

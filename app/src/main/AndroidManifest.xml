@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.HomeActivity" />
-        <activity android:name=".ui.ScannerViewActivity" />
+        <activity android:name=".ui.activities.HomeActivity" />
+        <activity android:name=".ui.activities.ScannerViewActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

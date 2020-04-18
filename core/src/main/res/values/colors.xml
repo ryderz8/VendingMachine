@@ -5,5 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="color_white">#FFFFFF</color>
     <color name="bottom_navigation_default">#6D6E71</color>
+    <color name="light_grey_text">#BCBEC0</color>
+    <color name="text_grey">#6D6E71</color>
+    <color name="text_black">#414042</color>
+
 
 </resources>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name__">BeerVM</string>
+    <string name="price">Price <font color='#FF0000'>*</font></string>
+    <string name="quantity">Quantity <font color='#FF0000'>*</font></string>
+
+    <string-array name="beer_type">
+        <item>KF</item>
+        <item>SABMiller</item>
+        <item>Carlsberg</item>
+        <item>Molson Coors</item>
+    </string-array>
+
 
 </resources>

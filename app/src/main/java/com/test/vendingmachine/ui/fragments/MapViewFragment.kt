@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.test.core.base.BaseFragment
 import com.test.vendingmachine.R
-import com.test.vendingmachine.data.DependencyProvider
+import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.FragmentMapBinding
 import com.test.vendingmachine.viewmodels.HomeViewModel
 
@@ -28,6 +28,10 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
     private var mMap: GoogleMap? = null
     private val TAG_CODE_PERMISSION_LOCATION = 2
     private var mapFragment: SupportMapFragment? = null
+
+    companion object{
+        var onClick : ((name :String) -> Unit)? = null
+    }
 
     override fun initializeController() {
     }
@@ -98,13 +102,10 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
 
     override fun onInfoWindowClick(marker: Marker?) {
         marker?.let {
-            Toast.makeText(activity!!, "Hi", Toast.LENGTH_SHORT).show()
+           marker.title.let {
+               onClick?.invoke(it)
+           }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-       // FragmentHelper.removeFragment(activity?.supportFragmentManager!!, MapViewFragment())
     }
 
     private fun setupToolbar() {

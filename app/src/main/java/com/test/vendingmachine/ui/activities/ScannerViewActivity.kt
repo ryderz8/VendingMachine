@@ -1,4 +1,4 @@
-package com.test.vendingmachine.ui
+package com.test.vendingmachine.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -53,8 +53,6 @@ class ScannerViewActivity : Activity(), ZXingScannerView.ResultHandler {
         try {
             mScannerView!!.stopCamera()
 
-            // Add Sound to comfirm correct take sound
-            MediaPlayer.create(this, Constants.SCAN_OK_SOUND).start()
             val resultIntent = Intent()
 
             resultIntent.putExtra(Constants.BAR_CODE, rawResult.text)
@@ -65,7 +63,6 @@ class ScannerViewActivity : Activity(), ZXingScannerView.ResultHandler {
             // Stop camera on pause
         } catch (e: Exception) {
             Log.e(Constants.ERROR, e.message)
-            MediaPlayer.create(this, Constants.SCAN_ERROR_SOUND).start()
         }
 
     }

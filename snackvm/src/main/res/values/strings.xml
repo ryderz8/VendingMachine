@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_">Snacks</string>
+    <string name="input_data">Input Data</string>
+    <string name="name">Name <font color='#FF0000'>*</font></string>
+    <string name="price">Price <font color='#FF0000'>*</font></string>
+    <string name="quantity">Quantity <font color='#FF0000'>*</font></string>
+    <string-array name="snacks_type">
+        <item>Parle Biscuit</item>
+        <item>Kurkure</item>
+        <item>Unibic Choco</item>
+        <item>Unibic Chili</item>
+        <item>Unibic Almond</item>
+    </string-array>
 
 </resources>
