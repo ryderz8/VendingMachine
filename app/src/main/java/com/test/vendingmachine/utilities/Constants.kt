@@ -16,6 +16,9 @@ class Constants {
         const val COFFEE_VM = "coffee"
         const val SNACKS_VM = "snacks"
         const val BEER_VM = "beer"
+        const val COFFEE = 2
+        const val SNACKS= 0
+        const val BEER= 1
         var randomCount = -1
 
         fun getRandomLatLong(): LatLong {

@@ -2,6 +2,7 @@ package com.test.vendingmachine.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.beervm.ui.BeerActivity
@@ -12,13 +13,13 @@ import com.test.vendingmachine.BR
 import com.test.vendingmachine.R
 import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.FragmentListBinding
-import com.test.vendingmachine.ui.adapters.ListItemAdapter
+import com.test.vendingmachine.ui.adapters.ListAdapterNew
 import com.test.vendingmachine.utilities.Constants
 import com.test.vendingmachine.viewmodels.HomeViewModel
 
 class ListFragment : BaseFragment<FragmentListBinding, HomeViewModel>() {
 
-    private lateinit var listItemAdapter: ListItemAdapter
+    private lateinit var listItemAdapter: ListAdapterNew
 
     override fun initializeController() {
     }
@@ -44,13 +45,13 @@ class ListFragment : BaseFragment<FragmentListBinding, HomeViewModel>() {
     }
 
     private fun setUpRecyclerView() {
-        listItemAdapter = ListItemAdapter()
+        listItemAdapter = ListAdapterNew()
         getViewDataBinding()?.recyclerView?.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         getViewDataBinding()?.recyclerView?.adapter = listItemAdapter
 
         listItemAdapter.onItemClick = {
-            when (it.name) {
+            when (it) {
                 Constants.SNACKS_VM ->
                     startActivity(Intent(activity!!, SnacksActivity::class.java))
                 Constants.BEER_VM ->
@@ -67,5 +68,10 @@ class ListFragment : BaseFragment<FragmentListBinding, HomeViewModel>() {
         displayHomeAsUpEnabled(false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        getViewModel().getItem()
+
+    }
 
 }

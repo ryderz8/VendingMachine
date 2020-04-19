@@ -1,4 +1,4 @@
-package com.test.core.binding
+package com.test.coffeevm.ui
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

@@ -26,7 +26,7 @@ class BeerViewModel(private val beerRepository: BeerRepository) : BaseViewModel(
 
                 beerRepository.insertScannedData(
                     BeerVM(
-                        id = UUID.randomUUID().toString(),
+                        beer_id = UUID.randomUUID().toString(),
                         vendorId = it.vendorId,
                         beer_brand = type,
                         price = price.toInt(),

@@ -87,7 +87,7 @@ class MainActivityRepository(
         )
     }
 
-    suspend fun getAllItem() : LiveData<List<VendingMachineEntity>> = coroutineScope {
+    suspend fun getAllItem() : List<VendingMachineEntity> = coroutineScope {
         return@coroutineScope vendingMachineDB.roomMainDao().getAllCategory()
     }
 }

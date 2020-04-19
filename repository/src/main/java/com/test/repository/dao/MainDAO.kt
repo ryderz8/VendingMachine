@@ -15,9 +15,6 @@ interface MainDAO {
     suspend fun insertData(vendingMachineEntity: VendingMachineEntity): Long
 
     @Query("SELECT * FROM Vending_Machines")
-    fun getAllCategory(): LiveData<List<VendingMachineEntity>>
-
-    @Query("SELECT * FROM snacks WHERE vendor_id = :venderId")
-    fun getChild(venderId: String): LiveData<List<SnacksVM>>
+    fun getAllCategory(): List<VendingMachineEntity>
 
 }

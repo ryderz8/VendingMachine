@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.coffeevm.R
 import com.test.coffeevm.BR
 import com.test.coffeevm.databinding.CoffeeRowItemBinding
-import com.test.core.binding.RecyclerBindingContract
 import com.test.repository.entity.CoffeeVM
 
 class CoffeeItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -19,6 +20,9 @@ import com.test.core.base.BaseFragment
 import com.test.vendingmachine.R
 import com.test.vendingmachine.data.di.DependencyProvider
 import com.test.vendingmachine.databinding.FragmentMapBinding
+import com.test.vendingmachine.utilities.ItemBeer
+import com.test.vendingmachine.utilities.ItemCoffee
+import com.test.vendingmachine.utilities.ItemSnacks
 import com.test.vendingmachine.viewmodels.HomeViewModel
 
 
@@ -29,8 +33,8 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
     private val TAG_CODE_PERMISSION_LOCATION = 2
     private var mapFragment: SupportMapFragment? = null
 
-    companion object{
-        var onClick : ((name :String) -> Unit)? = null
+    companion object {
+        var onClick: ((name: String) -> Unit)? = null
     }
 
     override fun initializeController() {
@@ -42,7 +46,7 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
 
     override fun initializeViews(savedInstanceState: Bundle?) {
         setupToolbar()
-         mapFragment =
+        mapFragment =
             childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment?.getMapAsync(this)
 
@@ -73,15 +77,34 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
             PackageManager.PERMISSION_GRANTED
         ) {
             mMap?.setOnInfoWindowClickListener(this)
-            val list = getViewModel().listItem.value
+            val list = getViewModel().mListItem.value
             val builder = LatLngBounds.Builder()
             val markerOptions = MarkerOptions()
             list?.forEach {
-                markerOptions.title(it.name)
-                markerOptions.position(LatLng(it.lat, it.ong))
-                builder.include(markerOptions.position)
-                val marker = mMap?.addMarker(markerOptions)
-                marker?.tag = it
+                when (it) {
+                    is ItemSnacks -> {
+                        markerOptions.title(it.vn_detail.vn_name)
+                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                        builder.include(markerOptions.position)
+                        val marker = mMap?.addMarker(markerOptions)
+                        marker?.tag = it
+                    }
+                    is ItemBeer -> {
+                        markerOptions.title(it.vn_detail.vn_name)
+                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                        builder.include(markerOptions.position)
+                        val marker = mMap?.addMarker(markerOptions)
+                        marker?.tag = it
+                    }
+                    is ItemCoffee -> {
+                        markerOptions.title(it.vn_detail.vn_name)
+                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                        builder.include(markerOptions.position)
+                        val marker = mMap?.addMarker(markerOptions)
+                        marker?.tag = it
+                    }
+
+                }
             }
             val bounds = builder.build()
             val cu = CameraUpdateFactory.newLatLngBounds(bounds, 0)
@@ -102,13 +125,18 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
 
     override fun onInfoWindowClick(marker: Marker?) {
         marker?.let {
-           marker.title.let {
-               onClick?.invoke(it)
-           }
+            marker.title.let {
+                onClick?.invoke(it)
+            }
         }
     }
 
     private fun setupToolbar() {
         displayHomeAsUpEnabled(false)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        getViewModel().mListItem = MutableLiveData()
     }
 }

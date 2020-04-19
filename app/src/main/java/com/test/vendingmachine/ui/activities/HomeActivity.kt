@@ -19,6 +19,8 @@ import com.test.vendingmachine.viewmodels.HomeViewModel
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
+     var listFragment : ListFragment? = null
+
     override fun getLayoutId(): Int {
         return R.layout.activity_home
     }
@@ -62,8 +64,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
         getViewDataBinding()?.bottomNavigation?.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.list_item -> {
-                    if (getViewDataBinding()?.bottomNavigation?.selectedItemId != menuItem.itemId)
-                        addClickedFragment(ListFragment())
+                    if (getViewDataBinding()?.bottomNavigation?.selectedItemId != menuItem.itemId) {
+                        if(listFragment == null){
+                            listFragment = ListFragment()
+                        }
+                        addClickedFragment(listFragment!!)
+                    }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.map_item -> {

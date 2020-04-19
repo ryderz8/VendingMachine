@@ -12,7 +12,7 @@ import androidx.room.ForeignKey.CASCADE
     )], indices = [Index(value = ["name"], unique = true)]
 )
 data class SnacksVM(
-    @ColumnInfo(name = "id") @PrimaryKey val id: String,
+    @ColumnInfo(name = "snack_id") @PrimaryKey val snack_id: String,
     @ColumnInfo(name = "vendor_id") val vendorId: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "type") val type: String,

@@ -34,12 +34,12 @@ class MainViewModel(private val mainActivityRepository: MainActivityRepository) 
 
     fun checkForEmptyDB() {
         viewModelScope.launch {
-            val res = mainActivityRepository.getAllItem()
-            res.observeOnce(Observer {
-                if (it?.size ?: 0 > 0) {
-                    valueInserted.value = 1
-                }
-            })
+//            val res = mainActivityRepository.getAllItem()
+//            res.observeOnce(Observer {
+//                if (it?.size ?: 0 > 0) {
+//                    valueInserted.value = 1
+//                }
+//            })
 
         }
     }

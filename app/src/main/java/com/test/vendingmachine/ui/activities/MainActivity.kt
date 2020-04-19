@@ -90,7 +90,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         getViewDataBinding()?.launchApp?.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
-        //for button visibility
+        //for button visibility  android:visibility="@{vm.valueInserted != -1 ? View.VISIBLE : View.GONE}"
         getViewModel().checkForEmptyDB()
     }
 

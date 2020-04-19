@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_100"
             android:text="@string/get_in"
-            android:visibility="@{vm.valueInserted != -1 ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@+id/openScanner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

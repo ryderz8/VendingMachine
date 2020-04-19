@@ -26,7 +26,7 @@ class SnacksViewModel(private val snacksRepository: SnacksRepository) : BaseView
 
                 snacksRepository.insertScannedData(
                     SnacksVM(
-                        id = UUID.randomUUID().toString(),
+                        snack_id = UUID.randomUUID().toString(),
                         vendorId = it.vendorId,
                         name = name,
                         type = type,

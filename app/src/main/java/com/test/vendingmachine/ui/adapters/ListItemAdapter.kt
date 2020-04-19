@@ -1,3 +1,4 @@
+/*
 package com.test.vendingmachine.ui.adapters
 
 import android.view.LayoutInflater
@@ -54,3 +55,4 @@ class ListItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
         }
     }
 }
+*/
