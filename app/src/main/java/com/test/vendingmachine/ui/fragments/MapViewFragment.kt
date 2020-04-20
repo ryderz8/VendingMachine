@@ -78,37 +78,39 @@ class MapViewFragment : BaseFragment<FragmentMapBinding, HomeViewModel>(), OnMap
         ) {
             mMap?.setOnInfoWindowClickListener(this)
             val list = getViewModel().mListItem.value
-            val builder = LatLngBounds.Builder()
-            val markerOptions = MarkerOptions()
-            list?.forEach {
-                when (it) {
-                    is ItemSnacks -> {
-                        markerOptions.title(it.vn_detail.vn_name)
-                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
-                        builder.include(markerOptions.position)
-                        val marker = mMap?.addMarker(markerOptions)
-                        marker?.tag = it
-                    }
-                    is ItemBeer -> {
-                        markerOptions.title(it.vn_detail.vn_name)
-                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
-                        builder.include(markerOptions.position)
-                        val marker = mMap?.addMarker(markerOptions)
-                        marker?.tag = it
-                    }
-                    is ItemCoffee -> {
-                        markerOptions.title(it.vn_detail.vn_name)
-                        markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
-                        builder.include(markerOptions.position)
-                        val marker = mMap?.addMarker(markerOptions)
-                        marker?.tag = it
-                    }
+            if(list?.size ?:0 > 0) {
+                val builder = LatLngBounds.Builder()
+                val markerOptions = MarkerOptions()
+                list?.forEach {
+                    when (it) {
+                        is ItemSnacks -> {
+                            markerOptions.title(it.vn_detail.vn_name)
+                            markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                            builder.include(markerOptions.position)
+                            val marker = mMap?.addMarker(markerOptions)
+                            marker?.tag = it
+                        }
+                        is ItemBeer -> {
+                            markerOptions.title(it.vn_detail.vn_name)
+                            markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                            builder.include(markerOptions.position)
+                            val marker = mMap?.addMarker(markerOptions)
+                            marker?.tag = it
+                        }
+                        is ItemCoffee -> {
+                            markerOptions.title(it.vn_detail.vn_name)
+                            markerOptions.position(LatLng(it.vn_detail.lat, it.vn_detail.long))
+                            builder.include(markerOptions.position)
+                            val marker = mMap?.addMarker(markerOptions)
+                            marker?.tag = it
+                        }
 
+                    }
                 }
+                val bounds = builder.build()
+                val cu = CameraUpdateFactory.newLatLngBounds(bounds, 0)
+                mMap?.animateCamera(cu)
             }
-            val bounds = builder.build()
-            val cu = CameraUpdateFactory.newLatLngBounds(bounds, 0)
-            mMap?.animateCamera(cu)
             mMap?.isMyLocationEnabled = true
         } else {
             ActivityCompat.requestPermissions(

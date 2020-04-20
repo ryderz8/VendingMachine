@@ -10,7 +10,7 @@ import com.test.repository.entity.SnacksVM
 import java.lang.Exception
 
 class Transformer {
-    var mainData = mutableListOf<Any>()
+    private var mainData = mutableListOf<Any>()
 
     fun transformData(
         snackData: List<ItemVMSnacks>,
@@ -24,34 +24,40 @@ class Transformer {
             val ivc = mutableListOf<CoffeeVM>()
 
             var det: VMDetail? = null
-            snackData.forEach { item ->
-                det = VMDetail(
-                    item.vendingMachineEntity.vm_name,
-                    item.vendingMachineEntity.lat,
-                    item.vendingMachineEntity.ong
-                )
-                ivs.add(item.snacksVM)
+            if (snackData.isNotEmpty()) {
+                snackData.forEach { item ->
+                    det = VMDetail(
+                        item.vendingMachineEntity.vm_name,
+                        item.vendingMachineEntity.lat,
+                        item.vendingMachineEntity.ong
+                    )
+                    ivs.add(item.snacksVM)
+                }
+                mainData.add(ItemSnacks(det!!, ivs))
             }
-            mainData.add(ItemSnacks(det!!, ivs))
-            beerData.forEach { item ->
-                det = VMDetail(
-                    item.vendingMachineEntity.vm_name,
-                    item.vendingMachineEntity.lat,
-                    item.vendingMachineEntity.ong
-                )
-                ivb.add(item.beerVM)
+            if(beerData.isNotEmpty()) {
+                beerData.forEach { item ->
+                    det = VMDetail(
+                        item.vendingMachineEntity.vm_name,
+                        item.vendingMachineEntity.lat,
+                        item.vendingMachineEntity.ong
+                    )
+                    ivb.add(item.beerVM)
+                }
+                mainData.add(ItemBeer(det!!, ivb))
             }
-            mainData.add(ItemBeer(det!!, ivb))
-            coffeeData.forEach { item ->
-                det = VMDetail(
-                    item.vendingMachineEntity.vm_name,
-                    item.vendingMachineEntity.lat,
-                    item.vendingMachineEntity.ong
-                )
+            if(coffeeData.isNotEmpty()) {
+                coffeeData.forEach { item ->
+                    det = VMDetail(
+                        item.vendingMachineEntity.vm_name,
+                        item.vendingMachineEntity.lat,
+                        item.vendingMachineEntity.ong
+                    )
 
-                ivc.add(item.coffeeVM)
+                    ivc.add(item.coffeeVM)
+                }
+                mainData.add(ItemCoffee(det!!, ivc))
             }
-            mainData.add(ItemCoffee(det!!, ivc))
 
             mListItem.postValue(mainData)
         } catch (ex: Exception) {
