@@ -124,7 +124,7 @@ class ListAdapterNew : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
             rowItemBinding.executePendingBindings()
 
             rowItemBinding.cardView.setOnClickListener {
-                 onItemClick?.invoke(data.vn_detail.vn_name)
+                onItemClick?.invoke(data.vn_detail.vn_name)
             }
         }
     }
@@ -172,7 +172,7 @@ class ListAdapterNew : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
             rowItemBinding.executePendingBindings()
 
             rowItemBinding.cardView.setOnClickListener {
-                 onItemClick?.invoke(data.vn_detail.vn_name)
+                onItemClick?.invoke(data.vn_detail.vn_name)
             }
         }
     }

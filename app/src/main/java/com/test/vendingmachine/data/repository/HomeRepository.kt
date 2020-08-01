@@ -14,8 +14,7 @@ class HomeRepository(private val vendingMachineDB: VendingMachineDB) {
         private var instance: HomeRepository? = null
 
         fun getInstance(vendingMachineDB: VendingMachineDB) =
-            instance
-                ?: synchronized(this) {
+            instance ?: synchronized(this) {
                     instance
                         ?: HomeRepository(
                             vendingMachineDB

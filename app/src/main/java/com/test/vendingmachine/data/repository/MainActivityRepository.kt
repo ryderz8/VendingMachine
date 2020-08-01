@@ -37,7 +37,7 @@ class MainActivityRepository(
     }
 
     suspend fun insertScannedData(name: String): String {
-
+        
         val latlng = Constants.getRandomLatLong()
         val uuid = UUID.randomUUID().toString()
         val res = vendingMachineDB.roomMainDao()

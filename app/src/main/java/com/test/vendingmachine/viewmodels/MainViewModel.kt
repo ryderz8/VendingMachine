@@ -16,7 +16,7 @@ class MainViewModel(private val mainActivityRepository: MainActivityRepository) 
     var valueInserted = MutableLiveData<Long>().apply { value = -1 }
 
     fun addScannedEntryToDB(vmName: String) {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             val resId = mainActivityRepository.insertScannedData(vmName)
             if (resId != "0") {
                 valueInserted.postValue(1)

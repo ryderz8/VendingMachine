@@ -10,9 +10,11 @@ import com.test.repository.entity.VendingMachineEntity
 import com.test.vendingmachine.data.repository.HomeRepository
 import com.test.vendingmachine.utilities.Constants
 import com.test.vendingmachine.utilities.Transformer
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.coroutineContext
 
 class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel() {
 
